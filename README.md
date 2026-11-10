@@ -14,6 +14,7 @@
 - 自定义 PNG、JPEG、WebP 背景图，支持 0–32px 模糊；设置保存在本机。
 - 导出四周保留随倍率缩放的 32px 留白，导出后恢复页面与滚动位置。
 - 内置简体中文、繁体中文、英语、德语、西班牙语、法语、日语界面；缺失翻译回退到英语。
+- Apple 风格的浅色弹窗，使用系统字体、分段筛选和清晰的主次操作，支持键盘焦点及减少动态效果偏好。
 
 ## 安装
 
@@ -41,7 +42,7 @@
 ChatGPT-Native-Longshot/
 ├── extension/              # 可直接加载的扩展，只保留运行文件
 │   ├── manifest.json
-│   ├── popup.html / popup.js
+│   ├── popup.html / popup.css / popup.js
 │   ├── background.js
 │   ├── content.js
 │   ├── native-capture.js
@@ -92,6 +93,6 @@ python3 scripts/package.py
 
 ## 来源与许可
 
-此项目从现存的 2.3.3 完整扩展源码恢复并整理，运行代码保持原样。基于 2.0.0 扩展修改的来源说明及已有许可信息见 [NOTICE.md](NOTICE.md)。
+此项目从现存的 2.3.3 完整扩展源码恢复并整理，后续改动记录在 [CHANGELOG.md](CHANGELOG.md)。基于 2.0.0 扩展修改的来源说明及已有许可信息见 [NOTICE.md](NOTICE.md)。
 
 本项目与 OpenAI 无隶属或官方背书关系。

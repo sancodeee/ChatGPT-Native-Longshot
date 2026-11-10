@@ -14,6 +14,7 @@ Current extension version: **2.3.3**. Built with Manifest V3, plain JavaScript, 
 - Use a PNG, JPEG, or WebP background with 0–32px blur; settings stay on your device.
 - Add 32px margins scaled with the export, then restore the page and scroll position.
 - Include Simplified Chinese, Traditional Chinese, English, German, Spanish, French, and Japanese UI resources; missing translations fall back to English.
+- Apple-inspired light popup with system typography, segmented filters, clear primary and secondary actions, keyboard focus, and reduced-motion support.
 
 ## Installation
 
@@ -41,7 +42,7 @@ Keep the conversation tab active during capture. Avoid scrolling, switching tabs
 ChatGPT-Native-Longshot/
 ├── extension/              # Directly loadable runtime files only
 │   ├── manifest.json
-│   ├── popup.html / popup.js
+│   ├── popup.html / popup.css / popup.js
 │   ├── background.js
 │   ├── content.js
 │   ├── native-capture.js
@@ -92,6 +93,6 @@ Automated checks cover repository structure, asset references, script syntax, an
 
 ## Provenance and licensing
 
-This repository was restored from a complete existing 2.3.3 extension copy. Runtime code is preserved unchanged. See [NOTICE.md](NOTICE.md) for the recorded 2.0.0 origin and available licensing information.
+This repository was restored from a complete existing 2.3.3 extension copy. Subsequent changes are recorded in [CHANGELOG.md](CHANGELOG.md). See [NOTICE.md](NOTICE.md) for the recorded 2.0.0 origin and available licensing information.
 
 This project is not affiliated with or endorsed by OpenAI.

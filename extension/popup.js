@@ -276,8 +276,9 @@ class ChatImageExporter {
       const contentHtml = this.renderContent(msg.content);
       
       div.innerHTML = `
-        <input type="checkbox" class="msg-checkbox" ${this.selectedIndices.has(idx) ? 'checked' : ''}>
+        <input type="checkbox" class="msg-checkbox" aria-labelledby="message-role-${idx}" ${this.selectedIndices.has(idx) ? 'checked' : ''}>
         <div class="msg-content">
+          <div class="msg-role" id="message-role-${idx}">${this.escapeHtml(t(msg.role === 'user' ? 'roleYou' : 'roleChatGPT') || (msg.role === 'user' ? 'You' : 'ChatGPT'))} · ${idx + 1}</div>
           <div class="msg-body">${contentHtml}</div>
         </div>
       `;
@@ -432,6 +433,8 @@ class ChatImageExporter {
     
     this.viewAllBtn.classList.toggle('active', mode === 'all');
     this.viewSelectedBtn.classList.toggle('active', mode === 'selected');
+    this.viewAllBtn.setAttribute('aria-pressed', String(mode === 'all'));
+    this.viewSelectedBtn.setAttribute('aria-pressed', String(mode === 'selected'));
     
     // 更新消息可见性
     this.chatPreview.querySelectorAll('.chat-message').forEach(el => {
