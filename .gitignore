@@ -1,0 +1,29 @@
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local dependencies and caches
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+
+# Generated packages and local verification output
+/dist/
+/test-results/
+/coverage/
+*.crx
+*.pem
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.log

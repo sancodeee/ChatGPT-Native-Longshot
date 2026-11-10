@@ -1,0 +1,177 @@
+{
+  "extensionName": {
+    "message": "ChatGPT 原寸ロングショット"
+  },
+  "extensionDescription": {
+    "message": "ChatGPT の会話を元の表示スタイルで長い画像として保存・コピーします。"
+  },
+  "actionTitle": {
+    "message": "ChatGPT 原寸ロングショット"
+  },
+  "popupTitle": {
+    "message": "ChatGPT 原寸ロングショット"
+  },
+  "viewAll": {
+    "message": "すべて"
+  },
+  "viewSelected": {
+    "message": "選択済み"
+  },
+  "labelSelected": {
+    "message": "選択"
+  },
+  "btnSelectAll": {
+    "message": "すべて選択"
+  },
+  "btnClear": {
+    "message": "クリア"
+  },
+  "btnInvert": {
+    "message": "反転"
+  },
+  "emptyLoadingTitle": {
+    "message": "読み込み中..."
+  },
+  "emptyLoadingDesc": {
+    "message": "会話を読み取っています。しばらくお待ちください。"
+  },
+  "emptyNoMessagesTitle": {
+    "message": "メッセージが見つかりません"
+  },
+  "emptyNoMessagesDescHtml": {
+    "message": "ページに会話があることを確認して、<br>もう一度お試しください。"
+  },
+  "emptyFailedToLoadTitle": {
+    "message": "読み込みに失敗しました"
+  },
+  "loadingWorking": {
+    "message": "処理中..."
+  },
+  "loadingReadingConversation": {
+    "message": "会話を読み取り中..."
+  },
+  "loadingExtractingMessages": {
+    "message": "メッセージを抽出中..."
+  },
+  "loadingLoadingMessages": {
+    "message": "メッセージを読み込み中..."
+  },
+  "loadingGeneratingImage": {
+    "message": "画像を生成中..."
+  },
+  "loadingCopyingToClipboard": {
+    "message": "クリップボードにコピー中..."
+  },
+  "loadingSaving": {
+    "message": "保存中..."
+  },
+  "tipOnlySelectedHtml": {
+    "message": "ヒント：書き出し画像には <span class=\"highlight\">選択したメッセージ</span> のみが含まれます。"
+  },
+  "labelScale": {
+    "message": "倍率"
+  },
+  "btnCopyImage": {
+    "message": "画像をコピー"
+  },
+  "btnSaveImage": {
+    "message": "画像を保存"
+  },
+  "toastLoadedMessages": {
+    "message": "$COUNT$ 件のメッセージを読み込みました。",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "toastCopied": {
+    "message": "✓ クリップボードにコピーしました。"
+  },
+  "toastSaved": {
+    "message": "✓ 保存しました。"
+  },
+  "toastCopyFailedPrefix": {
+    "message": "コピーに失敗しました： "
+  },
+  "toastSaveFailedPrefix": {
+    "message": "保存に失敗しました： "
+  },
+  "toastPleaseSelectAtLeastOne": {
+    "message": "少なくとも 1 件のメッセージを選択してください。"
+  },
+  "errUnableGetCurrentTab": {
+    "message": "現在のタブを取得できません。"
+  },
+  "errUnableGetCurrentTabId": {
+    "message": "現在のタブ ID を取得できません。"
+  },
+  "errPleaseOpenChatGPT": {
+    "message": "ChatGPT を開いてからもう一度お試しください。"
+  },
+  "errFailedToReadMessages": {
+    "message": "メッセージの読み取りに失敗しました。"
+  },
+  "errRenderTemplateTimedOut": {
+    "message": "レンダリングテンプレートがタイムアウトしました。もう一度お試しください。"
+  },
+  "errRenderTemplateTimedOutShort": {
+    "message": "レンダリングテンプレートがタイムアウトしました。"
+  },
+  "errFailedLoadRenderTemplate": {
+    "message": "レンダリングテンプレートの読み込みに失敗しました。"
+  },
+  "errUnableAccessRenderFrame": {
+    "message": "レンダリングフレームにアクセスできません。もう一度お試しください。"
+  },
+  "errRendererNotReady": {
+    "message": "レンダラーの準備ができていません。もう一度お試しください。"
+  },
+  "errFailedLoadHtml2canvas": {
+    "message": "画像レンダリングライブラリの読み込みに失敗しました。"
+  },
+  "errHtml2canvasNotInitialized": {
+    "message": "html2canvas が初期化されていません。もう一度お試しください。"
+  },
+  "errRenderContainerNotFound": {
+    "message": "レンダリングコンテナが見つかりません。"
+  },
+  "errFailedGenerateImagePrefix": {
+    "message": "画像の生成に失敗しました： "
+  },
+  "errRenderFailedPrefix": {
+    "message": "レンダリングに失敗しました： "
+  },
+  "errSelectOneBeforeExport": {
+    "message": "書き出す前に少なくとも 1 件のメッセージを選択するか、ページ上の内容を選択してください。"
+  },
+  "errHtml2canvasNotAvailable": {
+    "message": "html2canvas を利用できません。"
+  },
+  "errSelectionTooLarge": {
+    "message": "選択範囲が大きすぎます。選択を減らすか倍率を下げてください。"
+  },
+  "errFailedRenderSelection": {
+    "message": "選択範囲のレンダリングに失敗しました。"
+  },
+  "roleYou": {
+    "message": "あなた"
+  },
+  "roleChatGPT": {
+    "message": "ChatGPT"
+  },
+  "footerGeneratedBy": {
+    "message": "$NAME$ により生成 · $DATE$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      },
+      "date": {
+        "content": "$2"
+      }
+    }
+  },
+  "btnRefresh": {
+    "message": "再読み込み"
+  }
+}

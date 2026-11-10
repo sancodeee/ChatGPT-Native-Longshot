@@ -1,0 +1,22 @@
+name: Validate extension
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Show maintenance tools
+        run: |
+          node --version
+          python3 --version
+      - name: Validate and package extension
+        run: python3 scripts/package.py

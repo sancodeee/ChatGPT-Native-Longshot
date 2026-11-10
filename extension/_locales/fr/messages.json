@@ -1,0 +1,177 @@
+{
+  "extensionName": {
+    "message": "ChatGPT Capture fidèle"
+  },
+  "extensionDescription": {
+    "message": "Enregistrez ou copiez les messages ChatGPT sélectionnés en conservant le style original de la page."
+  },
+  "actionTitle": {
+    "message": "ChatGPT Capture fidèle"
+  },
+  "popupTitle": {
+    "message": "ChatGPT Capture fidèle"
+  },
+  "viewAll": {
+    "message": "Tout"
+  },
+  "viewSelected": {
+    "message": "Sélectionné"
+  },
+  "labelSelected": {
+    "message": "Sélectionné"
+  },
+  "btnSelectAll": {
+    "message": "Tout sélectionner"
+  },
+  "btnClear": {
+    "message": "Effacer"
+  },
+  "btnInvert": {
+    "message": "Inverser"
+  },
+  "emptyLoadingTitle": {
+    "message": "Chargement..."
+  },
+  "emptyLoadingDesc": {
+    "message": "Lecture de la conversation, veuillez patienter."
+  },
+  "emptyNoMessagesTitle": {
+    "message": "Aucun message trouvé"
+  },
+  "emptyNoMessagesDescHtml": {
+    "message": "Assurez-vous que la page contient une conversation,<br>puis réessayez."
+  },
+  "emptyFailedToLoadTitle": {
+    "message": "Échec du chargement"
+  },
+  "loadingWorking": {
+    "message": "En cours..."
+  },
+  "loadingReadingConversation": {
+    "message": "Lecture de la conversation..."
+  },
+  "loadingExtractingMessages": {
+    "message": "Extraction des messages..."
+  },
+  "loadingLoadingMessages": {
+    "message": "Chargement des messages..."
+  },
+  "loadingGeneratingImage": {
+    "message": "Génération de l'image..."
+  },
+  "loadingCopyingToClipboard": {
+    "message": "Copie dans le presse-papiers..."
+  },
+  "loadingSaving": {
+    "message": "Enregistrement..."
+  },
+  "tipOnlySelectedHtml": {
+    "message": "Astuce : l'image exportée ne contiendra que <span class=\"highlight\">les messages sélectionnés</span>."
+  },
+  "labelScale": {
+    "message": "Échelle"
+  },
+  "btnCopyImage": {
+    "message": "Copier l'image"
+  },
+  "btnSaveImage": {
+    "message": "Enregistrer l'image"
+  },
+  "toastLoadedMessages": {
+    "message": "$COUNT$ messages chargés.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "toastCopied": {
+    "message": "✓ Copié dans le presse-papiers."
+  },
+  "toastSaved": {
+    "message": "✓ Enregistré."
+  },
+  "toastCopyFailedPrefix": {
+    "message": "Échec de la copie : "
+  },
+  "toastSaveFailedPrefix": {
+    "message": "Échec de l'enregistrement : "
+  },
+  "toastPleaseSelectAtLeastOne": {
+    "message": "Veuillez sélectionner au moins un message."
+  },
+  "errUnableGetCurrentTab": {
+    "message": "Impossible d'obtenir l'onglet actuel."
+  },
+  "errUnableGetCurrentTabId": {
+    "message": "Impossible d'obtenir l'ID de l'onglet actuel."
+  },
+  "errPleaseOpenChatGPT": {
+    "message": "Ouvrez ChatGPT et réessayez."
+  },
+  "errFailedToReadMessages": {
+    "message": "Échec de la lecture des messages."
+  },
+  "errRenderTemplateTimedOut": {
+    "message": "Délai dépassé pour le modèle de rendu. Veuillez réessayer."
+  },
+  "errRenderTemplateTimedOutShort": {
+    "message": "Délai dépassé pour le modèle de rendu."
+  },
+  "errFailedLoadRenderTemplate": {
+    "message": "Impossible de charger le modèle de rendu."
+  },
+  "errUnableAccessRenderFrame": {
+    "message": "Impossible d'accéder au cadre de rendu. Veuillez réessayer."
+  },
+  "errRendererNotReady": {
+    "message": "Le moteur de rendu n'est pas prêt. Veuillez réessayer."
+  },
+  "errFailedLoadHtml2canvas": {
+    "message": "Impossible de charger la bibliothèque de rendu d'images."
+  },
+  "errHtml2canvasNotInitialized": {
+    "message": "html2canvas n'a pas été initialisé. Veuillez réessayer."
+  },
+  "errRenderContainerNotFound": {
+    "message": "Conteneur de rendu introuvable."
+  },
+  "errFailedGenerateImagePrefix": {
+    "message": "Échec de la génération de l'image : "
+  },
+  "errRenderFailedPrefix": {
+    "message": "Échec du rendu : "
+  },
+  "errSelectOneBeforeExport": {
+    "message": "Avant d'exporter, sélectionnez au moins un message (ou sélectionnez du contenu sur la page)."
+  },
+  "errHtml2canvasNotAvailable": {
+    "message": "html2canvas n'est pas disponible."
+  },
+  "errSelectionTooLarge": {
+    "message": "La sélection est trop grande. Sélectionnez moins de contenu ou réduisez l'échelle."
+  },
+  "errFailedRenderSelection": {
+    "message": "Échec du rendu de la sélection."
+  },
+  "roleYou": {
+    "message": "Vous"
+  },
+  "roleChatGPT": {
+    "message": "ChatGPT"
+  },
+  "footerGeneratedBy": {
+    "message": "Généré par $NAME$ · $DATE$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      },
+      "date": {
+        "content": "$2"
+      }
+    }
+  },
+  "btnRefresh": {
+    "message": "Actualiser"
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "extensionName": {
+    "message": "ChatGPT Original-Langbild"
+  },
+  "extensionDescription": {
+    "message": "Ausgewählte ChatGPT-Nachrichten im ursprünglichen Seitenstil als langes Bild speichern oder kopieren."
+  },
+  "actionTitle": {
+    "message": "ChatGPT Original-Langbild"
+  },
+  "popupTitle": {
+    "message": "ChatGPT Original-Langbild"
+  },
+  "viewAll": {
+    "message": "Alle"
+  },
+  "viewSelected": {
+    "message": "Ausgewählt"
+  },
+  "labelSelected": {
+    "message": "Ausgewählt"
+  },
+  "btnSelectAll": {
+    "message": "Alle auswählen"
+  },
+  "btnClear": {
+    "message": "Leeren"
+  },
+  "btnInvert": {
+    "message": "Umkehren"
+  },
+  "emptyLoadingTitle": {
+    "message": "Lädt..."
+  },
+  "emptyLoadingDesc": {
+    "message": "Konversation wird gelesen, bitte warten."
+  },
+  "emptyNoMessagesTitle": {
+    "message": "Keine Nachrichten gefunden"
+  },
+  "emptyNoMessagesDescHtml": {
+    "message": "Stelle sicher, dass die Seite eine Konversation enthält,<br>und versuche es erneut."
+  },
+  "emptyFailedToLoadTitle": {
+    "message": "Laden fehlgeschlagen"
+  },
+  "loadingWorking": {
+    "message": "Wird verarbeitet..."
+  },
+  "loadingReadingConversation": {
+    "message": "Konversation wird gelesen..."
+  },
+  "loadingExtractingMessages": {
+    "message": "Nachrichten werden extrahiert..."
+  },
+  "loadingLoadingMessages": {
+    "message": "Nachrichten werden geladen..."
+  },
+  "loadingGeneratingImage": {
+    "message": "Bild wird erstellt..."
+  },
+  "loadingCopyingToClipboard": {
+    "message": "In die Zwischenablage wird kopiert..."
+  },
+  "loadingSaving": {
+    "message": "Wird gespeichert..."
+  },
+  "tipOnlySelectedHtml": {
+    "message": "Tipp: Das exportierte Bild enthält nur <span class=\"highlight\">ausgewählte Nachrichten</span>."
+  },
+  "labelScale": {
+    "message": "Skalierung"
+  },
+  "btnCopyImage": {
+    "message": "Bild kopieren"
+  },
+  "btnSaveImage": {
+    "message": "Bild speichern"
+  },
+  "toastLoadedMessages": {
+    "message": "$COUNT$ Nachrichten geladen.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "toastCopied": {
+    "message": "✓ In die Zwischenablage kopiert."
+  },
+  "toastSaved": {
+    "message": "✓ Gespeichert."
+  },
+  "toastCopyFailedPrefix": {
+    "message": "Kopieren fehlgeschlagen: "
+  },
+  "toastSaveFailedPrefix": {
+    "message": "Speichern fehlgeschlagen: "
+  },
+  "toastPleaseSelectAtLeastOne": {
+    "message": "Bitte wähle mindestens eine Nachricht aus."
+  },
+  "errUnableGetCurrentTab": {
+    "message": "Der aktuelle Tab konnte nicht ermittelt werden."
+  },
+  "errUnableGetCurrentTabId": {
+    "message": "Die ID des aktuellen Tabs konnte nicht ermittelt werden."
+  },
+  "errPleaseOpenChatGPT": {
+    "message": "Bitte öffne ChatGPT und versuche es erneut."
+  },
+  "errFailedToReadMessages": {
+    "message": "Nachrichten konnten nicht gelesen werden."
+  },
+  "errRenderTemplateTimedOut": {
+    "message": "Zeitüberschreitung beim Render-Template. Bitte erneut versuchen."
+  },
+  "errRenderTemplateTimedOutShort": {
+    "message": "Zeitüberschreitung beim Render-Template."
+  },
+  "errFailedLoadRenderTemplate": {
+    "message": "Render-Template konnte nicht geladen werden."
+  },
+  "errUnableAccessRenderFrame": {
+    "message": "Auf den Render-Frame kann nicht zugegriffen werden. Bitte erneut versuchen."
+  },
+  "errRendererNotReady": {
+    "message": "Renderer ist nicht bereit. Bitte erneut versuchen."
+  },
+  "errFailedLoadHtml2canvas": {
+    "message": "Die Bild-Rendering-Bibliothek konnte nicht geladen werden."
+  },
+  "errHtml2canvasNotInitialized": {
+    "message": "html2canvas wurde nicht initialisiert. Bitte erneut versuchen."
+  },
+  "errRenderContainerNotFound": {
+    "message": "Render-Container nicht gefunden."
+  },
+  "errFailedGenerateImagePrefix": {
+    "message": "Bild konnte nicht erstellt werden: "
+  },
+  "errRenderFailedPrefix": {
+    "message": "Rendern fehlgeschlagen: "
+  },
+  "errSelectOneBeforeExport": {
+    "message": "Vor dem Export bitte mindestens eine Nachricht auswählen (oder Inhalt auf der Seite markieren)."
+  },
+  "errHtml2canvasNotAvailable": {
+    "message": "html2canvas ist nicht verfügbar."
+  },
+  "errSelectionTooLarge": {
+    "message": "Die Auswahl ist zu groß. Wähle weniger Inhalt oder reduziere die Skalierung."
+  },
+  "errFailedRenderSelection": {
+    "message": "Auswahl konnte nicht gerendert werden."
+  },
+  "roleYou": {
+    "message": "Du"
+  },
+  "roleChatGPT": {
+    "message": "ChatGPT"
+  },
+  "footerGeneratedBy": {
+    "message": "Erstellt von $NAME$ · $DATE$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      },
+      "date": {
+        "content": "$2"
+      }
+    }
+  },
+  "btnRefresh": {
+    "message": "Aktualisieren"
+  }
+}

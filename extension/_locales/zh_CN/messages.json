@@ -1,0 +1,274 @@
+{
+  "extensionName": {
+    "message": "ChatGPT 原样长截图"
+  },
+  "extensionDescription": {
+    "message": "按会话原样式导出长截图，支持选择消息、保存 PNG 和复制图片。"
+  },
+  "actionTitle": {
+    "message": "ChatGPT 原样长截图"
+  },
+  "popupTitle": {
+    "message": "ChatGPT 原样长截图"
+  },
+  "viewAll": {
+    "message": "全部"
+  },
+  "viewSelected": {
+    "message": "已选"
+  },
+  "labelSelected": {
+    "message": "已选"
+  },
+  "btnSelectAll": {
+    "message": "全选"
+  },
+  "btnClear": {
+    "message": "清空"
+  },
+  "btnInvert": {
+    "message": "反选"
+  },
+  "emptyLoadingTitle": {
+    "message": "加载中..."
+  },
+  "emptyLoadingDesc": {
+    "message": "正在读取对话，请稍候。"
+  },
+  "emptyNoMessagesTitle": {
+    "message": "未找到消息"
+  },
+  "emptyNoMessagesDescHtml": {
+    "message": "请确认页面中有对话内容，<br>然后重试。"
+  },
+  "emptyFailedToLoadTitle": {
+    "message": "加载失败"
+  },
+  "loadingWorking": {
+    "message": "处理中..."
+  },
+  "loadingReadingConversation": {
+    "message": "正在读取对话..."
+  },
+  "loadingExtractingMessages": {
+    "message": "正在提取消息..."
+  },
+  "loadingLoadingMessages": {
+    "message": "正在加载消息..."
+  },
+  "loadingGeneratingImage": {
+    "message": "正在生成图片..."
+  },
+  "loadingCopyingToClipboard": {
+    "message": "正在复制到剪贴板..."
+  },
+  "loadingSaving": {
+    "message": "正在保存..."
+  },
+  "tipOnlySelectedHtml": {
+    "message": "按<span class=\"highlight\">原页面样式</span>导出已选消息。截图期间请保持当前标签页，不要滚动或调整窗口。"
+  },
+  "labelScale": {
+    "message": "倍率"
+  },
+  "btnCopyImage": {
+    "message": "复制图片"
+  },
+  "btnSaveImage": {
+    "message": "保存图片"
+  },
+  "toastLoadedMessages": {
+    "message": "已加载 $COUNT$ 条消息。",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "toastCopied": {
+    "message": "✓ 已复制到剪贴板。"
+  },
+  "toastSaved": {
+    "message": "✓ 已保存。"
+  },
+  "toastCopyFailedPrefix": {
+    "message": "复制失败："
+  },
+  "toastSaveFailedPrefix": {
+    "message": "保存失败："
+  },
+  "toastPleaseSelectAtLeastOne": {
+    "message": "请至少选择一条消息。"
+  },
+  "errUnableGetCurrentTab": {
+    "message": "无法获取当前标签页。"
+  },
+  "errUnableGetCurrentTabId": {
+    "message": "无法获取当前标签页 ID。"
+  },
+  "errPleaseOpenChatGPT": {
+    "message": "请打开 ChatGPT 页面后重试。"
+  },
+  "errFailedToReadMessages": {
+    "message": "读取消息失败。"
+  },
+  "errRenderTemplateTimedOut": {
+    "message": "渲染模板超时，请重试。"
+  },
+  "errRenderTemplateTimedOutShort": {
+    "message": "渲染模板超时。"
+  },
+  "errFailedLoadRenderTemplate": {
+    "message": "渲染模板加载失败。"
+  },
+  "errUnableAccessRenderFrame": {
+    "message": "无法访问渲染页面，请重试。"
+  },
+  "errRendererNotReady": {
+    "message": "渲染器尚未就绪，请重试。"
+  },
+  "errFailedLoadHtml2canvas": {
+    "message": "图片渲染库加载失败。"
+  },
+  "errHtml2canvasNotInitialized": {
+    "message": "html2canvas 未初始化，请重试。"
+  },
+  "errRenderContainerNotFound": {
+    "message": "未找到渲染容器。"
+  },
+  "errFailedGenerateImagePrefix": {
+    "message": "生成图片失败："
+  },
+  "errRenderFailedPrefix": {
+    "message": "渲染失败："
+  },
+  "errSelectOneBeforeExport": {
+    "message": "导出前请至少选择一条消息（或在页面上选中文本）。"
+  },
+  "errHtml2canvasNotAvailable": {
+    "message": "html2canvas 不可用。"
+  },
+  "errSelectionTooLarge": {
+    "message": "选区过大，请减少选取内容或降低倍率。"
+  },
+  "errFailedRenderSelection": {
+    "message": "渲染选区失败。"
+  },
+  "roleYou": {
+    "message": "你"
+  },
+  "roleChatGPT": {
+    "message": "ChatGPT"
+  },
+  "footerGeneratedBy": {
+    "message": "由 $NAME$ 生成 · $DATE$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      },
+      "date": {
+        "content": "$2"
+      }
+    }
+  },
+  "loadingNativeCapture": {
+    "message": "正在按原页面样式截图… $PERCENT$%",
+    "placeholders": {
+      "percent": {
+        "content": "$1"
+      }
+    }
+  },
+  "errNativeMessagesChanged": {
+    "message": "消息列表已变化，请重新打开扩展并选择消息。"
+  },
+  "errNativeStreaming": {
+    "message": "请等待回复完成后再截图。"
+  },
+  "errNativeOutside": {
+    "message": "会话内容不在可见区域内，请关闭遮挡面板后重试。"
+  },
+  "errNativeExpired": {
+    "message": "截图会话已结束，请重试。"
+  },
+  "errNativeResized": {
+    "message": "窗口大小已变化，截图期间请保持窗口大小不变。"
+  },
+  "errNativeTooMany": {
+    "message": "截图内容过长，请减少选择的消息。"
+  },
+  "errNativeLayoutChanged": {
+    "message": "会话布局发生变化，请等待图片与回复加载完成后重试。"
+  },
+  "errNativeMoved": {
+    "message": "截图期间页面发生移动，请勿滚动或调整窗口，然后重试。"
+  },
+  "errNativeKeepTab": {
+    "message": "截图期间请保持会话标签页处于当前状态。"
+  },
+  "errNativeTabChanged": {
+    "message": "截图期间切换了标签页，请返回会话后重试。"
+  },
+  "errNativeTooLarge": {
+    "message": "截图尺寸过大，请减少所选消息或降低倍率。"
+  },
+  "btnRefresh": {
+    "message": "刷新对话"
+  },
+  "backgroundTitle": {
+    "message": "导出背景设置"
+  },
+  "backgroundChoose": {
+    "message": "选择背景图"
+  },
+  "backgroundChange": {
+    "message": "更换背景图"
+  },
+  "backgroundClear": {
+    "message": "恢复纯色"
+  },
+  "backgroundNone": {
+    "message": "尚未选择背景图"
+  },
+  "backgroundPlain": {
+    "message": "纯色背景"
+  },
+  "backgroundConfigured": {
+    "message": "已设置图片 · 模糊 $BLUR$px",
+    "placeholders": {
+      "blur": {
+        "content": "$1"
+      }
+    }
+  },
+  "backgroundBlurLabel": {
+    "message": "模糊度"
+  },
+  "backgroundHint": {
+    "message": "设置保存在本机，后续导出自动沿用；背景图片不会上传。"
+  },
+  "backgroundSaved": {
+    "message": "背景已保存，后续导出自动沿用。"
+  },
+  "backgroundCleared": {
+    "message": "已恢复纯色背景。"
+  },
+  "backgroundSaveFailed": {
+    "message": "背景设置保存失败，请重试。"
+  },
+  "backgroundInvalidFile": {
+    "message": "请选择不超过 20MB 的 PNG、JPEG 或 WebP 图片。"
+  },
+  "backgroundWorking": {
+    "message": "正在保存背景设置..."
+  },
+  "backgroundLoading": {
+    "message": "正在读取背景设置..."
+  },
+  "emptyOpenChatGPTTitle": {
+    "message": "请先打开 ChatGPT 对话"
+  },
+  "emptyOpenChatGPTDesc": {
+    "message": "切换到 ChatGPT 会话页面，再点击右上角「刷新对话」。"
+  }
+}
