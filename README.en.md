@@ -4,7 +4,7 @@
 
 Export selected ChatGPT messages as a long PNG screenshot while preserving the original conversation's typography, theme, code, tables, formulas, and images. Save or copy the image, and optionally apply a custom background image with adjustable blur.
 
-Current extension version: **2.3.3**. Built with Manifest V3, plain JavaScript, and native browser screenshots. Load it directly without a build step.
+Current extension version: **2.3.4**. Built with Manifest V3, plain JavaScript, and native browser screenshots. Load it directly without a build step.
 
 ## Features
 
@@ -32,7 +32,7 @@ For a packaged ZIP, extract it first and load the extracted directory containing
 1. Open a conversation at `https://chatgpt.com/` and wait for replies and images to finish loading.
 2. Set your theme, window width, and browser zoom, then open the extension.
 3. Select messages and an export scale. Use **Refresh** after new messages arrive.
-4. Optionally choose a background image and blur amount, then click **Save** or **Copy**.
+4. To use an image background, click **Choose image** to open the dedicated settings page. Select an image there and wait for the thumbnail and saved confirmation. Return to ChatGPT, reopen the extension, then click **Save** or **Copy**. Blur and solid-background reset remain available on both surfaces.
 
 Keep the conversation tab active during capture. Avoid scrolling, switching tabs, or resizing the window. Background settings are reused for subsequent exports; you can also restore the solid background.
 
@@ -48,9 +48,11 @@ ChatGPT-Native-Longshot/
 │   ├── native-capture.js
 │   ├── capture-plan.js / capture-matte.js
 │   ├── background-settings.js
+│   ├── options.html / options.css / options.js
 │   ├── _locales/
 │   └── icons/
 ├── scripts/                # Validation, packaging, optional icon generation
+├── tests/                  # Background settings regression tests
 ├── docs/                   # Development and icon guides
 ├── .github/workflows/      # Push and pull request checks
 ├── CHANGELOG.md
@@ -69,11 +71,14 @@ Run from the repository root:
 # Validate the manifest, file references, locales, icons, and script syntax
 python3 scripts/check.py
 
+# Run background settings regression tests
+node --test tests/*.test.cjs
+
 # Validate first, then create an installable ZIP
 python3 scripts/package.py
 ```
 
-The output is `dist/ChatGPT-Native-Longshot-2.3.3.zip`, with `manifest.json` at the archive root. The version comes from the manifest. Documentation, tooling, and local files are excluded from the package, and `dist/` is ignored by Git.
+The output is `dist/ChatGPT-Native-Longshot-2.3.4.zip`, with `manifest.json` at the archive root. The version comes from the manifest. Documentation, tooling, and local files are excluded from the package, and `dist/` is ignored by Git.
 
 See the [development guide](docs/DEVELOPMENT.md) for module responsibilities, permissions, maintenance rules, and manual regression checks. Icon regeneration is optional; see the [icon guide](docs/ICONS.md). These detailed maintenance guides are currently in Chinese.
 
@@ -89,7 +94,7 @@ See the [development guide](docs/DEVELOPMENT.md) for module responsibilities, pe
 
 ## Verification scope
 
-Automated checks cover repository structure, asset references, script syntax, and package creation. They do not replace real-conversation checks for saving, copying, and page restoration. The recovered source did not include the historical tests mentioned in its original documentation; those tests are not presented as available in this repository.
+Automated checks cover repository structure, asset references, script syntax, and package creation. They do not replace real-conversation checks for saving, copying, and page restoration. The new `tests/background-settings.test.cjs` covers selection delegation and saved-state restoration. The recovered source did not include the historical tests mentioned in its original documentation.
 
 ## Provenance and licensing
 

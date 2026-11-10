@@ -16,6 +16,7 @@
 | `native-capture.js` | 页面范围计算、滚动、代码块展开与页面恢复 |
 | `capture-plan.js` | 合并消息区间、切片坐标、输出尺寸限制 |
 | `capture-matte.js` | 从明暗截图恢复前景透明度 |
+| `options.html` / `options.css` / `options.js` | 独立背景设置页，选图时不依赖工具栏弹窗存活 |
 | `background-settings.js` | 背景图处理、本机持久化与连续背景绘制 |
 | `background.js` | 原生视口截图、节流与图片读取 |
 | `_locales/*/messages.json` | 界面翻译，`en` 为默认回退语言 |
@@ -31,6 +32,7 @@
 
 ```bash
 python3 scripts/check.py
+node --test tests/*.test.cjs
 python3 scripts/package.py
 ```
 
@@ -38,7 +40,7 @@ python3 scripts/package.py
 
 `dist/` 保存生成的 ZIP，不提交 Git。安装包解压后即为扩展根目录，不包含外层 `extension/` 前缀。
 
-GitHub Actions 在 push、pull request 和手动触发时运行检查及打包。它不自动发布商店版本，也不上传真实对话截图。
+GitHub Actions 在 push、pull request 和手动触发时运行检查、背景回归测试及打包。它不自动发布商店版本，也不上传真实对话截图。
 
 ## 权限与本机存储
 
@@ -64,7 +66,9 @@ GitHub Actions 在 push、pull request 和手动触发时运行检查及打包�
 - 普通网页与浏览器内置页显示一般提示，失败后旧预览清空，重试可恢复。
 - 复制实际产生 PNG；如自动化拦截剪贴板，记录验证止于写入调用，不能宣称已验证系统粘贴。
 
-检查脚本不是功能测试。恢复副本中没有旧的 `tests/*.test.cjs` 或 `tests/ego-live-capture.mjs`，不要引用这些不存在的命令或沿用旧验证结论。后续增加测试时优先覆盖截图分段、尺寸边界与页面恢复等风险行为。
+背景图选择必须通过 `runtime.openOptionsPage()` 进入独立设置页；EgoLite 的工具栏弹窗可能在系统选图窗口取得焦点时关闭，不能在那里等待文件读取或保存回调。设置页和弹窗复用 `ExportBackgroundSettings` 及相同存储键，重新打开弹窗时加载已保存的图片。
+
+检查脚本不是功能测试。当前新增的 `tests/background-settings.test.cjs` 通过 `node --test tests/*.test.cjs` 运行，覆盖选图入口委托和已保存背景恢复。恢复副本中的历史几何测试及 `tests/ego-live-capture.mjs` 没有恢复，不能沿用旧验证结论。后续增加测试时优先覆盖截图分段、尺寸边界与页面恢复等风险行为。
 
 ## 迭代约定
 

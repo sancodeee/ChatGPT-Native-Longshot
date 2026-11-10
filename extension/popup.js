@@ -62,6 +62,7 @@ class ChatImageExporter {
     this.backgroundSettings = new ExportBackgroundSettings({
       notify: (message, error) => this.showToast(message, error),
       setBusy: busy => busy ? this.showLoading(t('backgroundWorking') || 'Saving background...') : this.hideLoading(),
+      chooseImage: () => this.openBackgroundSettings(),
     });
     this.bindEvents();
   }
@@ -109,6 +110,14 @@ class ChatImageExporter {
     // Export actions
     this.copyBtn.addEventListener('click', () => this.copyImage());
     this.saveBtn.addEventListener('click', () => this.saveImage());
+  }
+
+  async openBackgroundSettings() {
+    try {
+      await chrome.runtime.openOptionsPage();
+    } catch (error) {
+      this.showToast(t('backgroundOpenFailed') || 'Unable to open background settings. Please retry.', true);
+    }
   }
   
   showToast(message, isError = false) {

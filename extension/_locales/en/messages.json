@@ -270,5 +270,17 @@
   },
   "emptyOpenChatGPTDesc": {
     "message": "Switch to a ChatGPT conversation, then click Refresh."
+  },
+  "backgroundPopupHint": {
+    "message": "Choose or change the image on the settings page, then return to your conversation and reopen the extension."
+  },
+  "backgroundPageIntro": {
+    "message": "Choose and save a background here. This page stays open while you select an image."
+  },
+  "backgroundPageReturn": {
+    "message": "Once the thumbnail and saved confirmation appear, return to ChatGPT and reopen the extension."
+  },
+  "backgroundOpenFailed": {
+    "message": "Unable to open background settings. Please retry."
   }
 }

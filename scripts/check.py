@@ -113,6 +113,8 @@ def validate():
             raise ValueError(f"Missing manifest translation: {key}")
 
     references = [manifest["background"]["service_worker"], manifest["action"]["default_popup"]]
+    if "options_ui" in manifest:
+        references.append(manifest["options_ui"]["page"])
     for content_script in manifest.get("content_scripts", []):
         references.extend(content_script.get("js", []))
         references.extend(content_script.get("css", []))

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "default_locale": "en",
   "name": "__MSG_extensionName__",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "activeTab",
@@ -33,6 +33,10 @@
   },
   "background": {
     "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
   },
   "content_scripts": [
     {

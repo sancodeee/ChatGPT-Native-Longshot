@@ -1,6 +1,6 @@
 // Persist one continuous export backdrop locally. Foreground content is never blurred.
 class ExportBackgroundSettings {
-  constructor({ notify, setBusy }) {
+  constructor({ notify, setBusy, chooseImage }) {
     this.notify = notify;
     this.setAppBusy = setBusy;
     this.image = null;
@@ -14,7 +14,8 @@ class ExportBackgroundSettings {
     this.preview = document.getElementById('backgroundPreview');
     this.fileName = document.getElementById('backgroundFileName');
     this.summary = document.getElementById('backgroundSummary');
-    this.chooseBtn.addEventListener('click', () => this.fileInput.click());
+    // Toolbar popups can close when a system file picker takes focus.
+    this.chooseBtn.addEventListener('click', chooseImage || (() => this.fileInput.click()));
     this.fileInput.addEventListener('change', async () => {
       const file = this.fileInput.files[0];
       if (file) await this.selectFile(file);

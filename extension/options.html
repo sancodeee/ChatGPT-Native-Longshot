@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" class="options-page">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="backgroundTitle">Export background</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header class="header">
+    <h1 data-i18n="popupTitle">ChatGPT Native Longshot</h1>
+  </header>
+  <main>
+    <h2 data-i18n="backgroundTitle">Export background</h2>
+    <p class="settings-intro" data-i18n="backgroundPageIntro">Choose and save a background here. This page stays open while you select an image.</p>
+    <section class="background-settings" aria-labelledby="backgroundSummary">
+      <p class="settings-summary" id="backgroundSummary"></p>
+      <div class="background-panel">
+        <div class="background-image-row">
+          <img id="backgroundPreview" alt="" hidden>
+          <div class="background-image-actions">
+            <div class="background-buttons">
+              <button type="button" id="chooseBackgroundBtn" data-i18n="backgroundChoose">Choose image</button>
+              <button type="button" id="clearBackgroundBtn" data-i18n="backgroundClear" disabled>Restore solid color</button>
+            </div>
+            <span id="backgroundFileName"></span>
+          </div>
+        </div>
+        <input type="file" id="backgroundFile" accept="image/png,image/jpeg,image/webp" hidden>
+        <div class="background-blur-row">
+          <label for="backgroundBlur" data-i18n="backgroundBlurLabel">Blur</label>
+          <input type="range" id="backgroundBlur" min="0" max="32" step="1" value="16" disabled>
+          <output id="backgroundBlurValue" for="backgroundBlur">16px</output>
+        </div>
+        <p class="background-hint" data-i18n="backgroundHint">Saved on this device and reused automatically. Images are never uploaded.</p>
+      </div>
+      <p class="settings-status" id="backgroundSaveStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
+    <p class="settings-return" data-i18n="backgroundPageReturn">Once the thumbnail and saved confirmation appear, return to ChatGPT and reopen the extension.</p>
+  </main>
+  <script src="background-settings.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

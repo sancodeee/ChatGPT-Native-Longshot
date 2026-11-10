@@ -270,5 +270,17 @@
   },
   "emptyOpenChatGPTDesc": {
     "message": "切换到 ChatGPT 会话页面，再点击右上角「刷新对话」。"
+  },
+  "backgroundPopupHint": {
+    "message": "选择或更换背景图会打开设置页；保存后，返回会话并重新打开扩展即可使用。"
+  },
+  "backgroundPageIntro": {
+    "message": "在这里选择并保存背景图。选图时页面会保持打开，保存后自动用于后续导出。"
+  },
+  "backgroundPageReturn": {
+    "message": "看到缩略图和保存提示后，返回 ChatGPT 并重新打开扩展即可使用。"
+  },
+  "backgroundOpenFailed": {
+    "message": "无法打开背景设置页，请重试。"
   }
 }

@@ -1,0 +1,106 @@
+html.options-page {
+  width: auto;
+  height: auto;
+  min-height: 100%;
+  overflow: auto;
+}
+
+.options-page body {
+  display: block;
+  width: auto;
+  max-width: 640px;
+  height: auto;
+  max-height: none;
+  margin: 48px auto;
+  padding: 0 20px;
+  overflow: visible;
+}
+
+.options-page .header {
+  padding: 0 0 28px;
+  border: 0;
+  background: transparent;
+}
+
+.options-page .header h1 {
+  font-size: 18px;
+}
+
+.options-page main h2 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.settings-intro,
+.settings-return {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.settings-intro {
+  margin: 0 0 24px;
+}
+
+.settings-return {
+  margin: 18px 0 0;
+}
+
+.options-page .background-settings {
+  margin: 0;
+  padding: 22px;
+}
+
+.options-page #backgroundSummary {
+  max-width: none;
+  margin: 0 0 18px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.options-page .background-panel {
+  padding: 0;
+}
+
+.options-page .background-image-row {
+  align-items: flex-start;
+}
+
+.options-page #backgroundPreview {
+  width: 96px;
+  height: 96px;
+}
+
+.options-page .background-blur-row {
+  margin-top: 22px;
+}
+
+.settings-status {
+  min-height: 1.5em;
+  margin: 16px 0 0;
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.settings-status.is-error {
+  color: #ad2534;
+}
+
+@media (max-width: 480px) {
+  .options-page body {
+    margin-block: 28px;
+    padding-inline: 16px;
+  }
+
+  .options-page .background-settings {
+    padding: 18px;
+  }
+
+  .options-page #backgroundPreview {
+    width: 64px;
+    height: 64px;
+  }
+}
