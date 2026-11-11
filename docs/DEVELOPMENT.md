@@ -40,7 +40,7 @@ python3 scripts/package.py
 
 `dist/` 保存生成的 ZIP，不提交 Git。安装包解压后即为扩展根目录，不包含外层 `extension/` 前缀。
 
-GitHub Actions 在 push、pull request 和手动触发时运行检查、背景回归测试及打包。它不自动发布商店版本，也不上传真实对话截图。
+GitHub Actions 在 push、pull request 和手动触发时运行检查、回归测试及打包。它不自动发布商店版本，也不上传真实对话截图。
 
 ## 权限与本机存储
 
@@ -68,7 +68,9 @@ GitHub Actions 在 push、pull request 和手动触发时运行检查、背景�
 
 背景图选择必须通过 `runtime.openOptionsPage()` 进入独立设置页；EgoLite 的工具栏弹窗可能在系统选图窗口取得焦点时关闭，不能在那里等待文件读取或保存回调。设置页和弹窗复用 `ExportBackgroundSettings` 及相同存储键，重新打开弹窗时加载已保存的图片。
 
-检查脚本不是功能测试。当前新增的 `tests/background-settings.test.cjs` 通过 `node --test tests/*.test.cjs` 运行，覆盖选图入口委托和已保存背景恢复。恢复副本中的历史几何测试及 `tests/ego-live-capture.mjs` 没有恢复，不能沿用旧验证结论。后续增加测试时优先覆盖截图分段、尺寸边界与页面恢复等风险行为。
+检查脚本不是功能测试。`node --test tests/*.test.cjs` 运行背景设置和图片读取回归测试：`background-settings.test.cjs` 覆盖选图入口委托和已保存背景恢复；`content-images.test.cjs` 覆盖引用图标不触发转码、正文图片转换与缓存，以及后台和 blob 读取回退。恢复副本中的历史几何测试及 `tests/ego-live-capture.mjs` 没有恢复，不能沿用旧验证结论。后续增加测试时优先覆盖截图分段、尺寸边界与页面恢复等风险行为。
+
+Google `t*.gstatic.com/faviconV2` 引用图标保留原地址供浏览器显示，不参与 base64 转换；原生截图直接保留页面像素。外部图标服务不可达时仍可能显示浏览器的占位图，这与正文图片读取或截图失败不同，不应为它扩大域名权限。
 
 ## 迭代约定
 

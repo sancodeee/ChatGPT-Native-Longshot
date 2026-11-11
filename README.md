@@ -4,7 +4,7 @@
 
 将选中的 ChatGPT 消息导出为 PNG 长截图，保留原会话的字体、主题、代码、表格、公式与图片。支持保存图片、复制图片，以及自定义图片背景和模糊效果。
 
-当前扩展版本：**2.3.4**。采用 Manifest V3、原生 JavaScript 和浏览器截图，无需构建即可加载。
+当前扩展版本：**2.3.5**。采用 Manifest V3、原生 JavaScript 和浏览器截图，无需构建即可加载。
 
 ## 功能
 
@@ -52,7 +52,7 @@ ChatGPT-Native-Longshot/
 │   ├── _locales/
 │   └── icons/
 ├── scripts/                # 检查、打包和可选的图标生成工具
-├── tests/                  # 背景设置回归测试
+├── tests/                  # 背景设置与图片读取回归测试
 ├── docs/                   # 开发指南、图标说明
 ├── .github/workflows/      # 提交与 PR 的自动检查
 ├── CHANGELOG.md
@@ -71,14 +71,14 @@ ChatGPT-Native-Longshot/
 # 检查清单、文件引用、语言资源、图标尺寸及脚本语法
 python3 scripts/check.py
 
-# 背景设置回归测试
+# 背景设置与图片读取回归测试
 node --test tests/*.test.cjs
 
 # 先检查，再生成安装 ZIP
 python3 scripts/package.py
 ```
 
-输出文件为 `dist/ChatGPT-Native-Longshot-2.3.4.zip`，ZIP 根目录直接包含 `manifest.json`。版本号由扩展清单读取，文档、开发工具和本机文件不会打入安装包；`dist/` 不纳入 Git。
+输出文件为 `dist/ChatGPT-Native-Longshot-2.3.5.zip`，ZIP 根目录直接包含 `manifest.json`。版本号由扩展清单读取，文档、开发工具和本机文件不会打入安装包；`dist/` 不纳入 Git。
 
 维护流程、模块职责、权限用途和手工回归清单见 [开发指南](docs/DEVELOPMENT.md)。图标重新生成是可选操作，见 [图标说明](docs/ICONS.md)。
 
@@ -94,7 +94,7 @@ python3 scripts/package.py
 
 ## 验证范围
 
-自动检查验证的是项目结构、资源引用、脚本语法和安装包生成，不能替代真实对话中的保存、复制与页面恢复验证。本仓库新增了 `tests/background-settings.test.cjs`，覆盖设置入口委托和保存状态恢复。恢复副本没有包含旧说明提到的历史测试文件。
+自动检查验证的是项目结构、资源引用、脚本语法和安装包生成，不能替代真实对话中的保存、复制与页面恢复验证。本仓库的 `tests/*.test.cjs` 覆盖背景设置入口、保存状态恢复，以及引用图标与正文图片的读取回退。恢复副本没有包含旧说明提到的历史测试文件。
 
 ## 来源与许可
 

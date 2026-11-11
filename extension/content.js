@@ -127,6 +127,12 @@ async function imageToBase64(src) {
     return src;
   }
 
+  // Citation favicons are display-only: native exports already capture their pixels.
+  // Their endpoint can reject CORS reads, so leave them to the browser's <img> loader.
+  if (/^https:\/\/t\d+\.gstatic\.com\/faviconV2(?:[?#]|$)/i.test(src)) {
+    return src;
+  }
+
   // Cache to avoid re-fetching the same images (helps large transcripts)
   // Note: blob: URLs are unique per page instance; caching still helps within one extraction.
   if (!imageToBase64._cache) imageToBase64._cache = new Map();

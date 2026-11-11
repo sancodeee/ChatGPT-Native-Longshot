@@ -20,5 +20,5 @@ jobs:
           python3 --version
       - name: Validate and package extension
         run: python3 scripts/package.py
-      - name: Test background settings
+      - name: Run regression tests
         run: node --test tests/*.test.cjs

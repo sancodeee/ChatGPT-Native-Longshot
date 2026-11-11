@@ -29,7 +29,7 @@ function captureViewport(tabId, sender) {
 }
 
 chrome.runtime.onInstalled.addListener(() => {
-  console.log('ChatGPT Native Longshot: Extension installed (v2.3.4 - Native Capture)');
+  console.log('ChatGPT Native Longshot: Extension installed (v2.3.5 - Native Capture)');
 });
 
 function arrayBufferToBase64(buffer) {
@@ -90,7 +90,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       return { success: true, dataUrl: await captureViewport(request.tabId, sender) };
     }
     if (request.action === 'ping') {
-      return { success: true, version: '2.3.4' };
+      return { success: true, version: '2.3.5' };
     }
 
     // Fetch a remote image and return data URL (bypass CORS via host_permissions).
@@ -119,4 +119,4 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   return true; // keep the message channel open for async response
 });
 
-console.log('ChatGPT Native Longshot: Background service worker loaded (v2.3.4)');
+console.log('ChatGPT Native Longshot: Background service worker loaded (v2.3.5)');
