@@ -4,7 +4,7 @@
 
 将选中的 ChatGPT 消息导出为 PNG 长截图，保留原会话的字体、主题、代码、表格、公式与图片。支持保存图片、复制图片，以及自定义图片背景和模糊效果。
 
-当前扩展版本：**2.3.5**。采用 Manifest V3、原生 JavaScript 和浏览器截图，无需构建即可加载。
+当前扩展版本：**2.3.6**。采用 Manifest V3、原生 JavaScript 和浏览器截图，无需构建即可加载。
 
 ## 功能
 
@@ -78,7 +78,7 @@ node --test tests/*.test.cjs
 python3 scripts/package.py
 ```
 
-输出文件为 `dist/ChatGPT-Native-Longshot-2.3.5.zip`，ZIP 根目录直接包含 `manifest.json`。版本号由扩展清单读取，文档、开发工具和本机文件不会打入安装包；`dist/` 不纳入 Git。
+输出文件为 `dist/ChatGPT-Native-Longshot-2.3.6.zip`，ZIP 根目录直接包含 `manifest.json`。版本号由扩展清单读取，文档、开发工具和本机文件不会打入安装包；`dist/` 不纳入 Git。
 
 维护流程、模块职责、权限用途和手工回归清单见 [开发指南](docs/DEVELOPMENT.md)。图标重新生成是可选操作，见 [图标说明](docs/ICONS.md)。
 
@@ -95,6 +95,9 @@ python3 scripts/package.py
 ## 验证范围
 
 自动检查验证的是项目结构、资源引用、脚本语法和安装包生成，不能替代真实对话中的保存、复制与页面恢复验证。本仓库的 `tests/*.test.cjs` 覆盖背景设置入口、保存状态恢复，以及引用图标与正文图片的读取回退。恢复副本没有包含旧说明提到的历史测试文件。
+
+
+隐私政策：[简体中文](https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.html) · [English](https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.en.html)。商店发布准备见 [CHROMEWEBSTORE.md](CHROMEWEBSTORE.md)。
 
 ## 来源与许可
 

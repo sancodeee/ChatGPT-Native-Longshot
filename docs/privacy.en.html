@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Privacy policy for ChatGPT Native Longshot: local conversation and screenshot processing, saved background settings, image source requests, retention, deletion and Limited Use.">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>Privacy Policy · ChatGPT Native Longshot</title>
+  <link rel="canonical" href="https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.en.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.html">
+  <link rel="alternate" hreflang="en" href="https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.en.html">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">ChatGPT Native Longshot</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html" lang="zh-CN" hreflang="zh-CN">Project · 中文</a>
+      <a href="privacy.html" lang="zh-CN" hreflang="zh-CN">隐私政策 · 中文</a>
+      <a href="privacy.en.html" aria-current="page">Privacy · English</a>
+    </nav>
+  </header>
+
+  <main class="policy-main" id="main">
+    <header class="policy-header">
+      <p class="eyebrow">ChatGPT Native Longshot</p>
+      <h1>Privacy Policy</h1>
+      <p class="meta">Publisher: sancodeee <span>Last updated: <time datetime="2026-11-11">2026-11-11</time></span></p>
+      <p class="lead">This policy explains how ChatGPT Native Longshot handles data when you use the extension, and how you can control and delete that data.</p>
+    </header>
+
+    <aside class="notice" aria-label="Privacy summary">
+      <p><strong>Conversations and screenshots are processed in your browser and are not uploaded to developer servers.</strong></p>
+      <p>Image previews may contact original image sources. Your chosen background settings are stored locally. Conversations and images may contain personal or sensitive information; local processing still involves handling that information.</p>
+    </aside>
+
+    <nav class="policy-toc" aria-label="Policy sections">
+      <a href="#scope">Scope</a>
+      <a href="#data">Data handled</a>
+      <a href="#network">Image requests</a>
+      <a href="#retention">Retention and deletion</a>
+      <a href="#limited-use">Limited Use</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <article class="policy-body panel" aria-label="Full privacy policy">
+      <section id="scope" aria-labelledby="scope-title">
+        <h2 id="scope-title">1. Scope and single purpose</h2>
+        <p>The extension lets you select messages from a ChatGPT conversation, generate a long PNG screenshot in the original page appearance, and save it locally or copy it as an image. Data is handled only for message selection, previews, screenshot composition, background settings and export.</p>
+        <p>ChatGPT Native Longshot is independently developed by sancodeee and is not affiliated with or endorsed by OpenAI. This policy describes the extension itself. The policies of ChatGPT, image source services, GitHub and your email service also apply when you use those services.</p>
+      </section>
+
+      <section id="data" aria-labelledby="data-title">
+        <h2 id="data-title">2. Data handled and its purpose</h2>
+        <dl class="data-list">
+          <dt>Current page and conversation content</dt>
+          <dd>When you open the extension or click refresh, it reads the current tab address and up to the latest 50 messages already present in the page DOM, including related text, roles, code, tables, formulas, images and styles, to provide selection and previews. It does not automatically load earlier conversation history that is not displayed. During export, it captures visible pixels of the current conversation page, then crops and composes the selected content in your browser.</dd>
+          <dt>Your selected background image</dt>
+          <dd>To create a custom export background, the extension reads the PNG, JPEG or WebP file you select and locally resizes and converts it to JPEG. The converted image, original filename and blur setting are saved in the extension's local storage, <code>chrome.storage.local</code>, in the current browser for future use. The extension does not use <code>chrome.storage.sync</code> cloud synchronization.</dd>
+          <dt>Exported images and the clipboard</dt>
+          <dd>Only when you click save or copy does the extension pass the generated PNG to the browser for download or write it to the system clipboard. The extension does not read the clipboard.</dd>
+          <dt>Personal or sensitive information within content</dt>
+          <dd>Conversations, screenshots and background images may include names, contact details, private communications, health, financial or location information that you enter or select. The extension does not separately extract these details or build user profiles, but processes them locally as part of that content.</dd>
+        </dl>
+      </section>
+
+      <section id="network" aria-labelledby="network-title">
+        <h2 id="network-title">3. Image previews and network requests</h2>
+        <p>Web content, conversations, screenshots and background images are processed and composed in your browser, without transmission to developer servers. The extension has no developer-operated screenshot upload service.</p>
+        <p>To display conversation images or citation icons, previews may request resources from their original image sources. Failed image reads may also be retried through the extension's background process. These requests send the original image URL, which may include signed or access parameters, and ordinary network information such as your IP address and request headers to the relevant source. They may include that source's cookies or existing credentials where browser rules allow. The extension does not use the Cookies API to read cookies or ask you to provide a password.</p>
+        <p>The extension is therefore not a fully offline tool. Image sources handle these requests under their own service policies. The extension does not additionally upload conversation text or generated screenshots to those sources.</p>
+      </section>
+
+      <section id="tracking" aria-labelledby="tracking-title">
+        <h2 id="tracking-title">4. Analytics, advertising, accounts and browsing history</h2>
+        <p>The extension includes no analytics, advertising or third-party trackers, and has no separate account or registration system. It does not read the browsing history API or track activity across websites. The current conversation address and image source addresses are used only to identify supported pages and provide the corresponding capture and preview features.</p>
+      </section>
+
+      <section id="retention" aria-labelledby="retention-title">
+        <h2 id="retention-title">5. Retention, deletion and your controls</h2>
+        <ul>
+          <li><strong>Conversations, previews and screenshots:</strong> These are temporarily held in browser memory, without being saved as history in persistent extension storage. Close the popup and refresh or close the relevant conversation page to clear the corresponding temporary runtime data.</li>
+          <li><strong>Background image:</strong> This remains in local storage until you replace it, select “Restore solid color” or remove the extension. Restoring solid color deletes the saved background image and its filename; the blur setting remains saved.</li>
+          <li><strong>All extension settings:</strong> Removing the extension clears its local extension storage in the current browser profile, including the saved background image and blur setting.</li>
+          <li><strong>Saved PNG files and the clipboard:</strong> These are managed by you, your browser and your operating system. Restoring solid color or removing the extension does not delete downloaded images or clear the system clipboard. Manage them through your file manager and system controls.</li>
+        </ul>
+        <p>You can export only selected messages, use no background image, or stop using and remove the extension. Check an image before saving or sharing it to make sure it contains only information you intend to disclose.</p>
+      </section>
+
+      <section id="limited-use" aria-labelledby="limited-use-title">
+        <h2 id="limited-use-title">6. Use, sharing and Limited Use commitment</h2>
+        <p>The extension's use of user data, including information received through Chrome or Google APIs, complies with the <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use">Chrome Web Store User Data Policy and its Limited Use requirements</a>. Data is used only for the capture features described here. We do not sell data or provide it to advertisers or data brokers, or use it for unrelated purposes, advertising targeting, profiling, creditworthiness or lending decisions.</p>
+        <p>The extension does not provide conversations or screenshots to the developer or others for human review. If you voluntarily submit specific content for support, the developer reads it only as needed to address that feedback. Apart from the original-image requests described here and your own decisions to save, copy or submit feedback, the extension does not transmit conversations or screenshots to the developer or other third parties.</p>
+        <p>Local processing still requires clear disclosure. See the <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq">Chrome Web Store User Data Policy FAQ</a> for the relevant requirements.</p>
+      </section>
+
+      <section id="website" aria-labelledby="website-title">
+        <h2 id="website-title">7. This website and voluntary feedback</h2>
+        <p>The project website and privacy pages contain no analytics tools, advertising, third-party fonts or scripts. The website is hosted on GitHub Pages. GitHub logs visitor IP addresses for security purposes, as explained in the <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection">GitHub Pages data collection notice</a> and <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>.</p>
+        <p>If you contact us by email or GitHub, the service you choose processes the email address, account information and message content you submit. The developer uses the information you provide to reply and investigate the issue. The extension does not automatically submit feedback or attach conversations. GitHub Issues are public; do not submit private conversations, credentials or other sensitive information there.</p>
+      </section>
+
+      <section id="changes" aria-labelledby="changes-title">
+        <h2 id="changes-title">8. Policy updates</h2>
+        <p>If data handling changes, we will update this page and its last-updated date, and describe the changes in the relevant project release notes.</p>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">9. Contact</h2>
+        <p>Publisher: sancodeee<br>Privacy and support email: <a href="mailto:wangsen715@gmail.com">wangsen715@gmail.com</a><br>Project support: <a href="https://github.com/sancodeee/ChatGPT-Native-Longshot/issues">GitHub Issues</a></p>
+        <p><a href="privacy.html" lang="zh-CN" hreflang="zh-CN">阅读中文版隐私政策</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>ChatGPT Native Longshot is independently developed by sancodeee. It is not an official OpenAI product and is not endorsed by OpenAI.</p>
+    <div class="footer-links">
+      <a href="index.html" lang="zh-CN" hreflang="zh-CN">Project home · 中文</a>
+      <a href="https://github.com/sancodeee/ChatGPT-Native-Longshot">GitHub project</a>
+      <a href="privacy.html" lang="zh-CN" hreflang="zh-CN">隐私政策 · 中文</a>
+    </div>
+  </footer>
+</body>
+</html>

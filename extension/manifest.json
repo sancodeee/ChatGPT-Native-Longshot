@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "default_locale": "en",
   "name": "__MSG_extensionName__",
-  "version": "2.3.5",
+  "version": "2.3.6",
   "description": "__MSG_extensionDescription__",
   "permissions": [
     "activeTab",
@@ -13,9 +13,7 @@
   "host_permissions": [
     "https://chatgpt.com/*",
     "https://chat.openai.com/*",
-    "https://*.oaiusercontent.com/*",
-    "https://*.openai.com/*",
-    "https://*.blob.core.windows.net/*"
+    "https://*.oaiusercontent.com/*"
   ],
   "action": {
     "default_popup": "popup.html",

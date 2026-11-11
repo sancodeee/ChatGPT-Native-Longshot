@@ -170,10 +170,10 @@ async function imageToBase64(src) {
         }
       }
     } catch (e2) {
-      console.warn('Fallback image conversion failed:', src, e2);
+      console.warn('Fallback image conversion failed.');
     }
 
-    console.warn('Failed to convert image to base64:', src, e);
+    console.warn('Failed to convert image to base64.');
     cache.set(src, src);
     return src; // Return original URL as last-resort fallback
   }

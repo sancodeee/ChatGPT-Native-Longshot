@@ -282,5 +282,11 @@
   },
   "backgroundOpenFailed": {
     "message": "无法打开背景设置页，请重试。"
+  },
+  "privacyNotice": {
+    "message": "本机处理；图片预览可能访问原图片来源。"
+  },
+  "privacyPolicy": {
+    "message": "隐私政策"
   }
 }

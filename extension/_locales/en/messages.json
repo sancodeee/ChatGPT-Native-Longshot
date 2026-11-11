@@ -282,5 +282,11 @@
   },
   "backgroundOpenFailed": {
     "message": "Unable to open background settings. Please retry."
+  },
+  "privacyNotice": {
+    "message": "Processed on this device; image previews may contact their original sources."
+  },
+  "privacyPolicy": {
+    "message": "Privacy policy"
   }
 }

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ChatGPT 原样长截图的隐私政策：浏览器内处理对话和截图、本机背景设置、图片来源请求、数据保留与删除及有限使用声明。">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>隐私政策 · ChatGPT 原样长截图</title>
+  <link rel="canonical" href="https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.html">
+  <link rel="alternate" hreflang="en" href="https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.en.html">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳至正文</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">ChatGPT 原样长截图</a>
+    <nav class="site-nav" aria-label="主导航">
+      <a href="index.html">项目</a>
+      <a href="privacy.html" aria-current="page">隐私政策 · 中文</a>
+      <a href="privacy.en.html" lang="en" hreflang="en">English</a>
+    </nav>
+  </header>
+
+  <main class="policy-main" id="main">
+    <header class="policy-header">
+      <p class="eyebrow">ChatGPT Native Longshot</p>
+      <h1>隐私政策</h1>
+      <p class="meta">发布者：sancodeee <span>最后更新：<time datetime="2026-11-11">2026-11-11</time></span></p>
+      <p class="lead">本政策说明「ChatGPT 原样长截图」如何处理你使用扩展时涉及的数据，以及你如何控制和删除这些数据。</p>
+    </header>
+
+    <aside class="notice" aria-label="隐私摘要">
+      <p><strong>对话与截图在浏览器内处理，不上传到开发者服务器。</strong></p>
+      <p>图片预览可能访问原图片来源；自选背景设置保存在本机。对话或图片可能包含个人及敏感信息，本政策不将本机处理等同于“不处理个人信息”。</p>
+    </aside>
+
+    <nav class="policy-toc" aria-label="政策章节">
+      <a href="#scope">适用范围</a>
+      <a href="#data">处理的数据</a>
+      <a href="#network">图片与网络请求</a>
+      <a href="#retention">保留与删除</a>
+      <a href="#limited-use">有限使用</a>
+      <a href="#contact">联系</a>
+    </nav>
+
+    <article class="policy-body panel" aria-label="完整隐私政策">
+      <section id="scope" aria-labelledby="scope-title">
+        <h2 id="scope-title">1. 适用范围与单一用途</h2>
+        <p>本扩展的用途是：让你选择 ChatGPT 对话中的消息，按原页面外观生成 PNG 长截图，并保存到本机或复制为图片。数据处理仅用于消息选择、预览、截图合成、背景设置与导出。</p>
+        <p>本扩展由 sancodeee 独立开发，与 OpenAI 无隶属关系或官方背书。本政策说明扩展自身的行为；你使用 ChatGPT、图片来源服务、GitHub 或邮件服务时，也适用对应服务的政策。</p>
+      </section>
+
+      <section id="data" aria-labelledby="data-title">
+        <h2 id="data-title">2. 处理哪些数据，以及为什么</h2>
+        <dl class="data-list">
+          <dt>当前页面与对话内容</dt>
+          <dd>当你主动打开扩展或点击刷新时，扩展读取当前标签页地址及当前页面 DOM 中已显示的最近最多 50 条消息，包括相关文字、角色、代码、表格、公式、图片和样式，用于选择及预览。扩展不会自动加载未显示的历史对话。导出时会读取当前会话页面的可见像素，在浏览器内裁切、拼接所选内容。</dd>
+          <dt>你选择的背景图片</dt>
+          <dd>为生成自定义导出背景，扩展读取你选择的 PNG、JPEG 或 WebP 文件，在本机缩放并转换为 JPEG。转换后的图片、原文件名和背景模糊度会保存在当前浏览器的扩展本机存储 <code>chrome.storage.local</code>，以便下次使用。扩展不使用 <code>chrome.storage.sync</code> 云同步。</dd>
+          <dt>导出图片与剪贴板</dt>
+          <dd>只有你点击保存或复制时，扩展才将生成的 PNG 交给浏览器下载，或写入系统剪贴板。扩展不读取剪贴板。</dd>
+          <dt>可能包含的个人或敏感信息</dt>
+          <dd>对话、截图和背景图可能包含你输入或选择的姓名、联系方式、私人通信、健康、财务、位置等信息。扩展不单独提取这些信息或建立用户档案，但会随相应内容在本机处理它们。</dd>
+        </dl>
+      </section>
+
+      <section id="network" aria-labelledby="network-title">
+        <h2 id="network-title">3. 图片预览与网络请求</h2>
+        <p>网页内容、对话、截图和背景图片的处理与合成在浏览器内完成，不发送到开发者服务器。扩展没有开发者提供的截图上传服务。</p>
+        <p>为显示会话中的图片或引用图标，预览可能向它们的原图片来源请求资源；图片读取失败时也可能通过扩展后台重试。这些请求会把原图片 URL（可能含签名或访问参数）及 IP 地址、请求头等常规网络信息发送给相应来源，并可能附带浏览器规则允许的该来源 Cookie 或已有凭据。扩展不使用 Cookie API 主动读取 Cookie，也不要求你提供密码。</p>
+        <p>因此，扩展并非完全离线工具。原图片来源按照其服务规则处理收到的请求；扩展不会另行把对话正文或生成的截图上传给这些来源。</p>
+      </section>
+
+      <section id="tracking" aria-labelledby="tracking-title">
+        <h2 id="tracking-title">4. 分析、广告、账户与浏览历史</h2>
+        <p>扩展不包含分析统计、广告或第三方跟踪器，没有独立账户或注册系统。不读取浏览历史 API，也不进行跨网站活动跟踪。当前会话地址和图片来源地址仅用于识别支持的页面及完成相应截图、预览功能。</p>
+      </section>
+
+      <section id="retention" aria-labelledby="retention-title">
+        <h2 id="retention-title">5. 保留、删除与用户控制</h2>
+        <ul>
+          <li><strong>对话、预览与截图：</strong>只在浏览器运行内存中暂存，不作为历史记录写入扩展持久存储。关闭弹窗并刷新或关闭相关会话页面，可清除相应的临时运行数据。</li>
+          <li><strong>背景图片：</strong>会持续保存在本机，直至你替换图片、点击「恢复纯色」或移除扩展。「恢复纯色」会删除保存的背景图片及其文件名，模糊度设置仍会保留。</li>
+          <li><strong>全部扩展设置：</strong>移除扩展会清理其在当前浏览器配置中的扩展本机存储，包括保存的背景图和模糊度。</li>
+          <li><strong>已保存的 PNG 与剪贴板：</strong>由你、浏览器和操作系统管理。恢复纯色或移除扩展不会删除已下载的图片，也不负责清除系统剪贴板；请通过文件管理器和系统提供的方式自行管理。</li>
+        </ul>
+        <p>你可以选择只导出部分消息、不设置背景图，或停止使用并移除扩展。保存和分享前，请确认图片没有包含你不希望公开的信息。</p>
+      </section>
+
+      <section id="limited-use" aria-labelledby="limited-use-title">
+        <h2 id="limited-use-title">6. 数据使用、分享与有限使用承诺</h2>
+        <p>本扩展对用户数据的使用，包括通过 Chrome 或 Google API 获取的信息，遵守 <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use">Chrome Web Store 用户数据政策的有限使用（Limited Use）要求</a>。我们仅为本政策说明的截图功能处理数据，不将用户数据出售或转交广告商、数据经纪商，不用于无关用途、广告定向或画像，也不用于信用评估或借贷决策。</p>
+        <p>扩展不会把对话和截图提供给开发者或其他人员人工查看。你主动向支持渠道提交特定内容时，开发者仅在处理该反馈所需的范围内阅读你提供的信息。除本政策说明的原图片来源请求及你主动保存、复制或提交反馈外，扩展不向开发者或其他第三方传输对话和截图。</p>
+        <p>即使数据只在本机处理，也属于需要说明的数据处理。相关要求可参阅 <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq">Chrome Web Store 用户数据政策 FAQ</a>。</p>
+      </section>
+
+      <section id="website" aria-labelledby="website-title">
+        <h2 id="website-title">7. 本网站与主动反馈</h2>
+        <p>项目网站和隐私页不嵌入分析工具、广告、第三方字体或脚本。网站由 GitHub Pages 托管；GitHub 会为安全目的记录访问者 IP 地址，详见 <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection">GitHub Pages 数据收集说明</a>及 <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub 隐私声明</a>。</p>
+        <p>如果你通过邮箱或 GitHub 主动反馈，所选服务会处理你提交的邮件地址、账号及消息内容，开发者会使用你提供的信息回复和排查问题。扩展不会自动提交反馈或附加对话。GitHub Issues 为公开渠道，请勿提交私人对话、凭据或其他敏感信息。</p>
+      </section>
+
+      <section id="changes" aria-labelledby="changes-title">
+        <h2 id="changes-title">8. 政策更新</h2>
+        <p>数据处理方式发生变化时，我们会更新本页面及顶部的最后更新日期，并在相关版本的项目更新说明中披露变化。</p>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">9. 联系我们</h2>
+        <p>发布者：sancodeee<br>隐私与支持邮箱：<a href="mailto:wangsen715@gmail.com">wangsen715@gmail.com</a><br>项目与问题反馈：<a href="https://github.com/sancodeee/ChatGPT-Native-Longshot/issues">GitHub Issues</a></p>
+        <p><a href="privacy.en.html" lang="en" hreflang="en">Read this policy in English</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>ChatGPT 原样长截图 · ChatGPT Native Longshot，由 sancodeee 独立开发。非 OpenAI 官方产品，无官方背书。</p>
+    <div class="footer-links">
+      <a href="index.html">返回项目首页</a>
+      <a href="https://github.com/sancodeee/ChatGPT-Native-Longshot">GitHub 项目</a>
+      <a href="privacy.en.html" lang="en" hreflang="en">Privacy policy · English</a>
+    </div>
+  </footer>
+</body>
+</html>

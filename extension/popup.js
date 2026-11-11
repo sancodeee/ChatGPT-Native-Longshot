@@ -31,6 +31,11 @@ function localizePopupPage() {
     document.documentElement.lang = lang;
   } catch (e) {}
 
+  const privacyLink = document.getElementById('privacyPolicyLink');
+  if (privacyLink) {
+    privacyLink.href = `https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy${/^zh(?:-|$)/i.test(lang) ? '' : '.en'}.html`;
+  }
+
   // data-i18n: set textContent
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.getAttribute('data-i18n');
@@ -266,11 +271,11 @@ class ChatImageExporter {
   
   /** Render preview list */
   renderPreview() {
-    this.chatPreview.innerHTML = '';
+    this.chatPreview.replaceChildren();
     
     this.messages.forEach((msg, idx) => {
       const div = document.createElement('div');
-      div.className = `chat-message ${msg.role}`;
+      div.className = `chat-message ${msg.role === 'user' ? 'user' : 'assistant'}`;
       div.dataset.index = idx;
       
       if (this.selectedIndices.has(idx)) {
@@ -282,27 +287,32 @@ class ChatImageExporter {
         div.classList.add('hidden');
       }
       
-      const contentHtml = this.renderContent(msg.content);
-      
-      div.innerHTML = `
-        <input type="checkbox" class="msg-checkbox" aria-labelledby="message-role-${idx}" ${this.selectedIndices.has(idx) ? 'checked' : ''}>
-        <div class="msg-content">
-          <div class="msg-role" id="message-role-${idx}">${this.escapeHtml(t(msg.role === 'user' ? 'roleYou' : 'roleChatGPT') || (msg.role === 'user' ? 'You' : 'ChatGPT'))} · ${idx + 1}</div>
-          <div class="msg-body">${contentHtml}</div>
-        </div>
-      `;
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.className = 'msg-checkbox';
+      checkbox.setAttribute('aria-labelledby', `message-role-${idx}`);
+      checkbox.checked = this.selectedIndices.has(idx);
+      const messageContent = document.createElement('div');
+      messageContent.className = 'msg-content';
+      const role = document.createElement('div');
+      role.className = 'msg-role';
+      role.id = `message-role-${idx}`;
+      role.textContent = `${t(msg.role === 'user' ? 'roleYou' : 'roleChatGPT') || (msg.role === 'user' ? 'You' : 'ChatGPT')} · ${idx + 1}`;
+      const body = document.createElement('div');
+      body.className = 'msg-body';
+      body.append(this.renderContent(msg.content));
+      messageContent.append(role, body);
+      div.append(checkbox, messageContent);
       
       // 点击消息切换选择
       div.addEventListener('click', (e) => {
-        if (e.target.type !== 'checkbox') {
-          const checkbox = div.querySelector('.msg-checkbox');
+        if (e.target !== checkbox) {
           checkbox.checked = !checkbox.checked;
           this.toggleSelection(idx, checkbox.checked);
         }
       });
       
       // checkbox 事件
-      const checkbox = div.querySelector('.msg-checkbox');
       checkbox.addEventListener('change', (e) => {
         e.stopPropagation();
         this.toggleSelection(idx, e.target.checked);
@@ -314,98 +324,7 @@ class ChatImageExporter {
   
   /** Render message content blocks */
   renderContent(contentBlocks) {
-    return contentBlocks.map(block => {
-      switch (block.type) {
-        case 'text':
-          return `<p>${this.escapeHtml(block.content)}</p>`;
-          
-        case 'paragraph':
-          return `<p>${block.html || this.escapeHtml(block.text)}</p>`;
-          
-        case 'heading':
-          const level = Math.min(Math.max(block.level || 2, 1), 6);
-          return `<h${level}>${this.escapeHtml(block.content)}</h${level}>`;
-          
-        case 'code':
-          const highlighted = this.highlightCode(block.content || '', block.language || 'plaintext');
-          return `
-            <div class="code-block">
-              <div class="code-header">${this.escapeHtml(block.language || 'code')}</div>
-              <pre class="code-content">${highlighted}</pre>
-            </div>
-          `;
-          
-        case 'image':
-          return `<img src="${block.src}" alt="${this.escapeHtml(block.alt || '')}" />`;
-          
-        case 'list':
-          const tag = block.ordered ? 'ol' : 'ul';
-          const items = block.items.map(item => `<li>${item}</li>`).join('');
-          return `<${tag}>${items}</${tag}>`;
-          
-        case 'blockquote':
-          return `<blockquote>${block.html}</blockquote>`;
-          
-        case 'table':
-          return block.html;
-          
-        case 'html':
-          return block.html;
-          
-        default:
-          return '';
-      }
-    }).join('\n');
-  }
-  
-  /** Lightweight code highlighting for the selection preview */
-  highlightCode(code, language) {
-    // Escape HTML first
-    let escaped = (code || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-
-    const keywords = {
-      js: /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|new|class|extends|import|export|from|default|async|await|this|true|false|null|undefined|typeof|instanceof)\b/g,
-      javascript: /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|new|class|extends|import|export|from|default|async|await|this|true|false|null|undefined|typeof|instanceof)\b/g,
-      typescript: /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|new|class|extends|implements|interface|type|import|export|from|default|async|await|this|true|false|null|undefined|typeof|instanceof|public|private|protected|readonly|static|abstract)\b/g,
-      ts: /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|new|class|extends|implements|interface|type|import|export|from|default|async|await|this|true|false|null|undefined|typeof|instanceof|public|private|protected|readonly|static|abstract)\b/g,
-      python: /\b(def|class|if|elif|else|for|while|try|except|finally|with|as|import|from|return|yield|lambda|True|False|None|and|or|not|in|is|pass|break|continue|raise|global|nonlocal|async|await)\b/g,
-      py: /\b(def|class|if|elif|else|for|while|try|except|finally|with|as|import|from|return|yield|lambda|True|False|None|and|or|not|in|is|pass|break|continue|raise|global|nonlocal|async|await)\b/g,
-      java: /\b(public|private|protected|class|interface|extends|implements|static|final|void|int|long|double|float|boolean|char|byte|short|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|throws|new|return|this|super|null|true|false|import|package)\b/g,
-      go: /\b(func|package|import|var|const|type|struct|interface|map|chan|go|defer|return|if|else|for|range|switch|case|break|continue|select|fallthrough|default|nil|true|false|make|new|len|cap|append|copy|delete)\b/g,
-      rust: /\b(fn|let|mut|const|static|struct|enum|impl|trait|pub|mod|use|crate|self|super|if|else|match|for|while|loop|break|continue|return|move|async|await|dyn|where|type|true|false|Some|None|Ok|Err)\b/g,
-      sql: /\b(SELECT|FROM|WHERE|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|DROP|ALTER|ADD|INDEX|JOIN|LEFT|RIGHT|INNER|OUTER|ON|AND|OR|NOT|IN|LIKE|ORDER|BY|GROUP|HAVING|LIMIT|OFFSET|AS|NULL|PRIMARY|KEY|FOREIGN|REFERENCES|UNIQUE|DEFAULT|AUTO_INCREMENT)\b/gi,
-      html: /(&lt;\/?)([\w-]+)/g,
-    };
-
-    const lang = (language || 'plaintext').toLowerCase();
-
-    // 关键字高亮
-    if (keywords[lang]) {
-      if (lang === 'html') {
-        escaped = escaped.replace(keywords[lang], '$1<span class="hljs-tag">$2</span>');
-      } else {
-        escaped = escaped.replace(keywords[lang], '<span class="hljs-keyword">$&</span>');
-      }
-    }
-
-    // 字符串
-    escaped = escaped.replace(/(["'`])(?:(?!\1)[^\\]|\\.)*\1/g, '<span class="hljs-string">$&</span>');
-    // 注释
-    escaped = escaped.replace(/(\/\/.*$|\/\*[\s\S]*?\*\/|#.*$)/gm, '<span class="hljs-comment">$&</span>');
-    // 数字
-    escaped = escaped.replace(/\b(\d+\.?\d*)\b/g, '<span class="hljs-number">$&</span>');
-
-    return escaped;
-  }
-
-  escapeHtml(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+    return ChatPreviewContent.render(contentBlocks);
   }
   
   /** Toggle selection state */

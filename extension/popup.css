@@ -588,7 +588,7 @@ button:disabled {
   background: var(--surface);
 }
 .footer-hint {
-  margin-bottom: 12px;
+  margin-bottom: 4px;
   color: var(--text-secondary);
   font-size: 10px;
   line-height: 1.6;
@@ -596,6 +596,16 @@ button:disabled {
 .footer-hint .highlight {
   color: #43434a;
   font-weight: 500;
+}
+.privacy-notice {
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 1.5;
+}
+.privacy-notice a {
+  color: var(--accent);
+  white-space: nowrap;
 }
 .footer-actions {
   display: flex;

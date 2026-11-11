@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message preview security regression</title>
+  <style>
+    body { max-width: 900px; margin: 32px auto; padding: 0 20px; font: 16px/1.5 system-ui, sans-serif; }
+    button { padding: 8px 16px; font: inherit; }
+    pre { white-space: pre-wrap; }
+    #fixture { padding: 12px; border: 1px solid #aaa; }
+    #fixture img { max-width: 120px; }
+    table { border-collapse: collapse; }
+    th, td { border: 1px solid #aaa; padding: 4px 8px; }
+  </style>
+  <script src="preview-content.js" defer></script>
+</head>
+<body>
+  <h1>Message preview security regression</h1>
+  <p>Runs the popup's real preview renderer in this browser, without loading an installed extension or using conversation data.</p>
+  <button id="runTests" type="button">Run tests</button>
+  <pre id="results" role="status">Ready. Run tests or call await runPreviewTests().</pre>
+  <div id="fixture"></div>
+</body>
+</html>

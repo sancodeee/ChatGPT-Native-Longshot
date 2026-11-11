@@ -4,7 +4,7 @@
 
 Export selected ChatGPT messages as a long PNG screenshot while preserving the original conversation's typography, theme, code, tables, formulas, and images. Save or copy the image, and optionally apply a custom background image with adjustable blur.
 
-Current extension version: **2.3.5**. Built with Manifest V3, plain JavaScript, and native browser screenshots. Load it directly without a build step.
+Current extension version: **2.3.6**. Built with Manifest V3, plain JavaScript, and native browser screenshots. Load it directly without a build step.
 
 ## Features
 
@@ -78,7 +78,7 @@ node --test tests/*.test.cjs
 python3 scripts/package.py
 ```
 
-The output is `dist/ChatGPT-Native-Longshot-2.3.5.zip`, with `manifest.json` at the archive root. The version comes from the manifest. Documentation, tooling, and local files are excluded from the package, and `dist/` is ignored by Git.
+The output is `dist/ChatGPT-Native-Longshot-2.3.6.zip`, with `manifest.json` at the archive root. The version comes from the manifest. Documentation, tooling, and local files are excluded from the package, and `dist/` is ignored by Git.
 
 See the [development guide](docs/DEVELOPMENT.md) for module responsibilities, permissions, maintenance rules, and manual regression checks. Icon regeneration is optional; see the [icon guide](docs/ICONS.md). These detailed maintenance guides are currently in Chinese.
 
@@ -95,6 +95,9 @@ See the [development guide](docs/DEVELOPMENT.md) for module responsibilities, pe
 ## Verification scope
 
 Automated checks cover repository structure, asset references, script syntax, and package creation. They do not replace real-conversation checks for saving, copying, and page restoration. The `tests/*.test.cjs` suite covers background selection, saved-state restoration, citation favicons, and body-image conversion fallbacks. The recovered source did not include the historical tests mentioned in its original documentation.
+
+
+Privacy policy: [English](https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.en.html) · [简体中文](https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.html). Store preparation: [CHROMEWEBSTORE.md](CHROMEWEBSTORE.md).
 
 ## Provenance and licensing
 

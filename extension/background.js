@@ -29,94 +29,152 @@ function captureViewport(tabId, sender) {
 }
 
 chrome.runtime.onInstalled.addListener(() => {
-  console.log('ChatGPT Native Longshot: Extension installed (v2.3.5 - Native Capture)');
+  console.log('ChatGPT Native Longshot: Extension installed (v2.3.6 - Native Capture)');
 });
 
-function arrayBufferToBase64(buffer) {
-  let binary = '';
-  const bytes = new Uint8Array(buffer);
-  const chunkSize = 0x8000;
-  for (let i = 0; i < bytes.length; i += chunkSize) {
-    binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
+function hasSameOrigin(first, second) {
+  try {
+    if ('Origin' in globalThis && typeof globalThis.Origin?.from === 'function') {
+      const firstOrigin = globalThis.Origin.from(first);
+      const secondOrigin = globalThis.Origin.from(second);
+      return !firstOrigin.opaque && !secondOrigin.opaque && firstOrigin.isSameOrigin(secondOrigin);
+    }
+    const firstUrl = new URL(first);
+    const secondUrl = new URL(second);
+    return firstUrl.origin !== 'null' && firstUrl.origin === secondUrl.origin;
+  } catch {
+    return false;
   }
-  return btoa(binary);
 }
 
-async function blobToDataUrl(blob) {
-  // MV3 service worker doesn't reliably expose FileReader, so we use arrayBuffer -> base64.
-  const mime = blob.type || 'application/octet-stream';
-  const buffer = await blob.arrayBuffer();
-  const base64 = arrayBufferToBase64(buffer);
-  return `data:${mime};base64,${base64}`;
-}
-
-async function fetchToDataUrl(url) {
-  const res = await fetch(url, {
-    // In extension context, host_permissions allow reading cross-origin responses without CORS.
-    // Keep cookies if the URL needs them (best-effort).
-    credentials: 'include',
-    cache: 'force-cache',
-  });
-  if (!res.ok) {
-    throw new Error(`HTTP ${res.status} for ${url}`);
+function parseImageUrl(value, allowCdn = true) {
+  if (typeof value !== 'string') throw new Error('Invalid image URL.');
+  const url = new URL(value);
+  const chatHost = ['chatgpt.com', 'chat.openai.com'].includes(url.hostname);
+  const imageHost = allowCdn && (url.hostname === 'oaiusercontent.com' || url.hostname.endsWith('.oaiusercontent.com'));
+  if (url.protocol !== 'https:' || url.username || url.password || url.port || (!chatHost && !imageHost)) {
+    throw new Error('Unapproved image origin.');
   }
-  const blob = await res.blob();
-  return await blobToDataUrl(blob);
+  return url;
 }
 
-async function blobUrlToDataUrlInMainWorld(tabId, blobUrl) {
+function getImageSenderUrl(sender) {
+  if (sender?.id !== chrome.runtime.id || !Number.isInteger(sender?.tab?.id) || sender.tab.id < 0 || sender.frameId !== 0) {
+    throw new Error('Invalid image sender.');
+  }
+  const url = parseImageUrl(sender.url, false);
+  if (sender.origin !== undefined && !hasSameOrigin(sender.origin, url.href)) {
+    throw new Error('Invalid image sender origin.');
+  }
+  return url;
+}
+
+// This function is also serialized into the page world for origin-bound blob images.
+async function readImageDataUrl(url, credentials, expectedPageOrigin = '') {
+  if (expectedPageOrigin) {
+    let matches;
+    if ('Origin' in globalThis && typeof globalThis.Origin?.from === 'function') {
+      const pageOrigin = globalThis.Origin.from(globalThis.location.href);
+      const expectedOrigin = globalThis.Origin.from(expectedPageOrigin);
+      matches = !pageOrigin.opaque && !expectedOrigin.opaque && pageOrigin.isSameOrigin(expectedOrigin);
+    } else {
+      const pageUrl = new URL(globalThis.location.href);
+      matches = pageUrl.origin !== 'null' && pageUrl.origin === new URL(expectedPageOrigin).origin;
+    }
+    if (!matches) throw new Error('Image page origin changed.');
+  }
+
+  const maxBytes = 20 * 1024 * 1024;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 10000);
+  let reader;
+  try {
+    const response = await fetch(url, {
+      credentials,
+      cache: 'force-cache',
+      // Refuse before following any redirect; no extra host permission is needed.
+      redirect: 'error',
+      signal: controller.signal,
+    });
+    if (!response.ok || response.redirected) throw new Error('Image request failed.');
+    const mime = (response.headers.get('content-type') || '').split(';')[0].trim().toLowerCase();
+    if (!/^image\/[a-z0-9.+-]+$/.test(mime)) throw new Error('Unsupported image response.');
+    if (Number(response.headers.get('content-length')) > maxBytes) throw new Error('Image is too large.');
+
+    const chunks = [];
+    let size = 0;
+    reader = response.body?.getReader();
+    if (reader) {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        size += value.byteLength;
+        if (size > maxBytes) throw new Error('Image is too large.');
+        chunks.push(value);
+      }
+    }
+    // FileReader is not consistently available in MV3 service workers.
+    const buffer = await new Blob(chunks, { type: mime }).arrayBuffer();
+    const bytes = new Uint8Array(buffer);
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) {
+      binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+    }
+    return `data:${mime};base64,${btoa(binary)}`;
+  } catch {
+    controller.abort();
+    throw new Error('Unable to read image.');
+  } finally {
+    reader?.releaseLock();
+    clearTimeout(timer);
+  }
+}
+
+async function blobUrlToDataUrlInMainWorld(sender, blobUrl, senderUrl) {
+  if (typeof blobUrl !== 'string' || new URL(blobUrl).protocol !== 'blob:') {
+    throw new Error('Invalid blob URL.');
+  }
+  // Parse the embedded URL as well: URL.origin alone discards credentials.
+  parseImageUrl(blobUrl.slice(5), false);
+  if (!hasSameOrigin(blobUrl, senderUrl.href)) throw new Error('Invalid blob origin.');
   const [{ result }] = await chrome.scripting.executeScript({
-    target: { tabId },
+    target: { tabId: sender.tab.id, frameIds: [0] },
     world: 'MAIN',
-    func: async (u) => {
-      const res = await fetch(u);
-      const blob = await res.blob();
-      return await new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
-        reader.onerror = () => reject(reader.error || new Error('FileReader failed'));
-        reader.readAsDataURL(blob);
-      });
-    },
-    args: [blobUrl],
+    func: readImageDataUrl,
+    args: [blobUrl, 'omit', senderUrl.origin],
   });
+  if (typeof result !== 'string' || !result.startsWith('data:image/')) throw new Error('Invalid image result.');
   return result;
 }
 
 // Message listener (image conversion helpers)
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   (async () => {
-    if (request.action === 'captureViewport') {
-      return { success: true, dataUrl: await captureViewport(request.tabId, sender) };
+    try {
+      if (request?.action === 'captureViewport') {
+        sendResponse({ success: true, dataUrl: await captureViewport(request.tabId, sender) });
+      } else if (request?.action === 'ping') {
+        sendResponse({ success: true, version: '2.3.6' });
+      } else if (request?.action === 'fetchToDataUrl') {
+        const senderUrl = getImageSenderUrl(sender);
+        const url = parseImageUrl(request.url);
+        // Only the sending ChatGPT origin may need its authentication cookies.
+        const credentials = hasSameOrigin(url.href, senderUrl.href) ? 'include' : 'omit';
+        sendResponse({ success: true, dataUrl: await readImageDataUrl(url.href, credentials) });
+      } else if (request?.action === 'blobToDataUrl') {
+        const senderUrl = getImageSenderUrl(sender);
+        sendResponse({ success: true, dataUrl: await blobUrlToDataUrlInMainWorld(sender, request.blobUrl, senderUrl) });
+      } else {
+        sendResponse({ success: false, error: 'Unknown action' });
+      }
+    } catch (err) {
+      // Network and scripting errors can contain signed URLs; never echo them.
+      const imageRequest = ['fetchToDataUrl', 'blobToDataUrl'].includes(request?.action);
+      sendResponse({ success: false, error: imageRequest ? 'Unable to read image.' : (err?.message || String(err)) });
     }
-    if (request.action === 'ping') {
-      return { success: true, version: '2.3.5' };
-    }
-
-    // Fetch a remote image and return data URL (bypass CORS via host_permissions).
-    if (request.action === 'fetchToDataUrl') {
-      const url = request.url;
-      if (!url || typeof url !== 'string') throw new Error('Missing url');
-      const dataUrl = await fetchToDataUrl(url);
-      return { success: true, dataUrl };
-    }
-
-    // Convert a blob: URL by running in the page MAIN world (blob URLs are origin-bound).
-    if (request.action === 'blobToDataUrl') {
-      const blobUrl = request.blobUrl;
-      if (!blobUrl || typeof blobUrl !== 'string') throw new Error('Missing blobUrl');
-      const tabId = sender?.tab?.id;
-      if (typeof tabId !== 'number') throw new Error('Missing sender tab');
-      const dataUrl = await blobUrlToDataUrlInMainWorld(tabId, blobUrl);
-      return { success: true, dataUrl };
-    }
-
-    return { success: false, error: 'Unknown action' };
-  })()
-    .then((payload) => sendResponse(payload))
-    .catch((err) => sendResponse({ success: false, error: err?.message || String(err) }));
+  })();
 
   return true; // keep the message channel open for async response
 });
 
-console.log('ChatGPT Native Longshot: Background service worker loaded (v2.3.5)');
+console.log('ChatGPT Native Longshot: Background service worker loaded (v2.3.6)');
