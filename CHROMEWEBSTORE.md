@@ -4,7 +4,7 @@
 
 ## 当前结论
 
-项目具备提交 Chrome Web Store 的技术基础：Manifest V3、集中且明确的截图用途、本地运行源码和有效安装 ZIP。作者已确认项目全部原创，源码归属已确认。已准备中英文隐私政策、商店素材与发布者信息，并收窄图片权限；仍需公开页面验证及账号本人完成开发者注册；不应把安装包有效理解为已经符合全部审核要求。
+项目具备提交 Chrome Web Store 的技术基础：Manifest V3、集中且明确的截图用途、本地运行源码和有效安装 ZIP。作者已确认项目全部原创，源码归属已确认。已准备中英文隐私政策、商店素材与发布者信息，并收窄图片权限；公开隐私页面已上线并验证，仍需账号本人完成开发者注册；不应把安装包有效理解为已经符合全部审核要求。
 
 本文件依据当前源码及 Google 官方文档整理，最终审核结果由 Chrome Web Store 决定。
 
@@ -13,7 +13,7 @@
 | Manifest / ZIP | 已检查：2.3.6、24 个运行文件，安装包由打包工具生成 | 使用 `scripts/package.py` 生成的 ZIP |
 | 源码与功能 | 未发现远程脚本加载、动态执行代码、分析统计或开发者上传服务；检查与 24 项 Node 测试、10 项真实浏览器预览测试通过 | 在正式 Chrome 安装中完成发布前回归 |
 | 单一用途 | 明确：选择 ChatGPT 消息并导出原样长截图 | 按下方用途说明填写 |
-| 隐私政策 | 已有中英文页面 | GitHub Pages 上线后验证公开 URL |
+| 隐私政策 | 中英文页面已在 GitHub Pages 上线，实际访问通过 | 使用下方已验证的公开 URL |
 | 域名权限 | 保留两个 ChatGPT 来源及 oaiusercontent 图片来源 | 已移除宽泛 OpenAI/Azure 权限，已验证来源与消息边界 |
 | 商店素材 | 已有 128px 图标、3 张 1280×800 截图及 440×280 宣传图 | 素材位于 `dist/store/2.3.6/`，上传商店时使用 |
 | 发布者账号 | 用户已有 Google 账号，尚未注册开发者 | 本人重新验证、注册、支付一次性费用并开启两步验证 |
@@ -134,7 +134,7 @@ Google 要求逐项说明必要性；范围大于功能所需可能被拒，见[
 
 English：https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.en.html
 
-本地文件为 `docs/privacy.html` 与 `docs/privacy.en.html`，包含本机处理、背景图与文件名、删除方式、图片请求、联系渠道和有限使用说明。公开上线验证状态见下方记录。
+本地文件为 `docs/privacy.html` 与 `docs/privacy.en.html`，包含本机处理、背景图与文件名、删除方式、图片请求、联系渠道和有限使用说明。两个公开页面已通过 EgoLite 实际访问验证，中文地址响应 HTTP 200，中英文互链正常。
 
 恢复纯色会清除保存的背景图片；代码未因此删除模糊度设置。用户保存的 PNG 是独立文件，需由用户自行管理。不要把这两种保留周期写成相同。
 
@@ -167,4 +167,4 @@ English：https://sancodeee.github.io/ChatGPT-Native-Longshot/privacy.en.html
 
 本项目没有已核实的商店拒绝记录或已发布条目 ID。上传 ZIP、填写资料、提交审核是不同阶段，流程见[官方发布指南](https://developer.chrome.com/docs/webstore/publish)。
 
-本次检查：`python3 scripts/check.py`、`node --test tests/*.test.cjs`（24/24）、`python3 scripts/package.py`；浏览器安全回归为 10/10。Chrome for Testing 149 已实际加载 2.3.6：原生弹窗为 527×498（内容宽 520），背景入口打开独立设置页，选图后持久保存、重新打开读取正常；生产图片背景合成的像素断言通过。公开页面在 GitHub Pages 上线后确认。
+本次检查：`python3 scripts/check.py`、`node --test tests/*.test.cjs`（24/24）、`python3 scripts/package.py`；浏览器安全回归为 10/10。Chrome for Testing 149 已实际加载 2.3.6：原生弹窗为 527×498（内容宽 520），背景入口打开独立设置页，选图后持久保存、重新打开读取正常；生产图片背景合成的像素断言通过。真实 Chrome 内容脚本消息链路已验证：强制 blob 读取走 MAIN-world 回退仍可生成图片预览，跨来源 blob 被拒绝。中英文 GitHub Pages 页面已实际访问确认；GitHub 的源码自动检查和 Pages 部署均通过。
